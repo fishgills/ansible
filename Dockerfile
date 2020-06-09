@@ -1,6 +1,6 @@
 # Source: https://ruleoftech.com/2017/dockerizing-all-the-things-running-ansible-inside-docker-container
 
-FROM alpine:3.7
+FROM node:12-alpine
  
 ENV ANSIBLE_VERSION 2.5.0
  
