@@ -1,8 +1,6 @@
-# Source: https://ruleoftech.com/2017/dockerizing-all-the-things-running-ansible-inside-docker-container
-
-FROM node:12-alpine3.9
+FROM alpine:3.7
  
-ENV ANSIBLE_VERSION 2.5.0
+ENV ANSIBLE_VERSION 2.9.0
  
 ENV BUILD_PACKAGES \
   bash \
@@ -23,7 +21,7 @@ ENV BUILD_PACKAGES \
  
 # If installing ansible@testing
 #RUN \
-#    echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> #/etc/apk/repositories
+#	echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> #/etc/apk/repositories
  
 RUN set -x && \
     \
@@ -64,4 +62,6 @@ ENV PYTHONPATH /ansible/lib
 ENV PATH /ansible/bin:$PATH
 ENV ANSIBLE_LIBRARY /ansible/library
  
-CMD ["ansible-playbook"]
+WORKDIR /ansible/playbooks
+ 
+ENTRYPOINT ["ansible-playbook"]
